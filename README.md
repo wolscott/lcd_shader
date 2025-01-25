@@ -29,4 +29,5 @@ While this effect is "mostly finished", there are still possibly improvements.
 - The Lum Boost feature could be reworked. I think the boost factor should be moved into the ShiftLumToChannel method so that it occurs BEFORE the clamp, rather than as a lerp between the base and boosted value. 
 - A scale parameter would be nice, to make the pixels even bigger, simply to show off the effect. 
 - It might be fun to experiment with diffent subpixel patterns. That should probably be its own dedicated shader, but might share some code. 
-- I would like to implement this in other shader languages, especially for Godot, which is similar to GLSL. 
+- I would like to implement this in other shader languages, especially for Godot, which is similar to GLSL.
+- While it's already a simple effect, I would like to put implement a "fast" version that, rather than averaging 6 pixels just takes one of the pixel colors and uses that. 
