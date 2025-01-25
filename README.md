@@ -13,7 +13,7 @@ That is the effect as I originally thought of it, but I figured why not paramete
 So the top and bottom halves of the block can be configured indepentedly with 3 options:
 
 ### Big Pixel
-This means that the 3 subpixels will all be made the average color of all 6 pixels in the block. 
+This means that the 3 subpixels will all be made the average color of all 6 pixels in the block. Note that currently this average is not correctly using any color theory to combine these colors. It's just the mean r, mean g, and mean b. 
 
 ### RGB
 This means that the first subpixel will be reduced to its red channel, the second to its green channel, and the third to its blue channel. When you activitate this without the Big Pixel setting, it preserves slightly more detail, since percevied lightness of the original image is partially preserved.
@@ -25,9 +25,10 @@ This only has an effect when the RGB setting is also active on the same block. T
 This effect is specifically for if you are using this shader for Final Fantasy XIV. It uses the alpha channel of the base image as a mask for the effect, which means it may work (or behave unpredicatably) when used with other applications. I borrowed this masking implementaiton directly from [Acerola](https://github.com/GarrettGunnell/AcerolaFX/tree/main).
 
 ## Future Improvements
-While this effect is "mostly finished", there are still possibly improvements. 
+While this effect is "mostly finished", there are still possibly improvements. Here are some I hope to make:
 - The Lum Boost feature could be reworked. I think the boost factor should be moved into the ShiftLumToChannel method so that it occurs BEFORE the clamp, rather than as a lerp between the base and boosted value. 
 - A scale parameter would be nice, to make the pixels even bigger, simply to show off the effect. 
 - It might be fun to experiment with diffent subpixel patterns. That should probably be its own dedicated shader, but might share some code. 
 - I would like to implement this in other shader languages, especially for Godot, which is similar to GLSL.
+- Improve the method used to find the big pixel color to be more accurate to perceptual color blending. 
 - While it's already a simple effect, I would like to put implement a "fast" version that, rather than averaging 6 pixels just takes one of the pixel colors and uses that. 
